@@ -29,6 +29,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'blog_kvartirka',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
