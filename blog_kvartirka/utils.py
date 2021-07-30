@@ -18,7 +18,7 @@ class ObjectCreateMixin:
         if bound_form.is_valid():
             new_obj = bound_form.save()
             return redirect(new_obj)
-        return render(request, self.template, context={'form': bound_form})
+        return render(request, self.template, context={'bound_form': bound_form})
 
 
 class ObjectUpdateMixin:
