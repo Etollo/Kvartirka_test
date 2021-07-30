@@ -28,12 +28,11 @@ class Comment(models.Model):
         return f"Comment by {self.name}"
 
 
-# Create your models here.
 class Post(models.Model):
     title = models.CharField(max_length=150, db_index=True)
     slug = models.SlugField(max_length=150, blank=True, unique=True)
     body = models.TextField(blank=True)
-    comments = GenericRelation(Comment)
+    comments = GenericRelation(Comment, content_type_field='content_type', object_id_field='object_id')
     date_publication = models.DateTimeField(auto_now_add=True)
 
     def get_absolute_url(self):
