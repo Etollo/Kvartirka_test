@@ -29,10 +29,10 @@ class Comment(models.Model):
 
 
 class Post(models.Model):
-    title = models.CharField(max_length=150, db_index=True)
+    title = models.CharField(max_length=150, db_index=True, blank=True)
     slug = models.SlugField(max_length=150, blank=True, unique=True)
     body = models.TextField(blank=True)
-    comments = GenericRelation(Comment, content_type_field='content_type', object_id_field='object_id')
+    comments = GenericRelation(Comment, content_type_field='content_type', object_id_field='object_id', blank=True)
     date_publication = models.DateTimeField(auto_now_add=True)
 
     def get_absolute_url(self):

@@ -1,0 +1,35 @@
+{% extends 'blog_kvartirka/base_blog.html' %}
+
+{% for name in names %}
+    <p>
+        {{ name }}
+    </p>
+{% endfor %}
+
+{% block title %}
+    Posts
+{% endblock %}
+
+{% block content %}
+{#    <form class="form-inline mx-auto m-5" style="max-width: 25%;" action="{% url 'news_list_url' %}" method="get">#}
+{#        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">#}
+{#        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>#}
+{#    </form>#}
+    <form action="" class="mx-auto m-5" style="max-width: 35%">
+        <h1>Posts:</h1>
+    </form>
+    {% for post in posts %}
+        {{ post }}
+        {{ post.id }}
+        {{ post.comments.all }}
+{#        {% include 'blog/includes/post_card_template.html' %}#}
+        {% for comment in comments %}
+{#            {{ comment.content_type }}#}
+            {% if comment.object_id == post.id and comment.content_type == post.comments%}
+                <b>{{ comment.content_object  }}</b>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+
+
+{% endblock %}
