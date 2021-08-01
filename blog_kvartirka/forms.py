@@ -7,13 +7,12 @@ from blog_kvartirka.models import Post, Comment
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['title', 'slug', 'body', 'tags']
+        fields = ['title', 'slug', 'body']
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'slug': forms.TextInput(attrs={'class': 'form-control'}),
             'body': forms.Textarea(attrs={'class': 'form-control'}),
-            'tags': forms.SelectMultiple(attrs={'class': 'form-control'}),
         }
 
     def clean_slug(self):
@@ -27,7 +26,7 @@ class PostForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ['name', 'body']
+        fields = ['name', 'body', 'content_type', 'object_id']
 
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
